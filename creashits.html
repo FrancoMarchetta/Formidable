@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+    <div style="display: flex;">
+        <h1>Boton que crea botones ➡</h1>
+        <button id="boton">Crear boton</button>
+    </div>
+
+    <div id="contenedor"></div>
+
+
+    <script>
+        let $contenedor = document.getElementById("contenedor");
+        let $boton = document.getElementById("boton");
+
+
+        function crearBoton() {
+            let contador = 0;
+
+            intervalo = setInterval(() => {
+                let $nuevoBoton = document.createElement("button");
+                $nuevoBoton.innerHTML = "Boton";
+                $contenedor.appendChild($nuevoBoton);
+
+                contador++;
+
+                if (contador === 12) {
+                    clearInterval(intervalo);
+
+                    let $terminado = document.createElement("h1");
+                    $terminado.innerHTML = "Terminado 👍🏼";
+                    setTimeout(() => {
+
+                        document.getElementById("body").appendChild($terminado);
+                    }, 1000);
+                }
+
+            }, 500);
+
+
+        }
+        $boton.addEventListener("click", crearBoton)
+
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            text-shadow: 3px 3px 0px #000;
+            color: #fff;
+        }
+
+        #boton {
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            border: 5px solid black;
+            border-radius: 15px;
+            background: #ffdd00;
+            box-shadow: 10px 10px 0px #000;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+            animation: pulse 2s infinite;
+        }
+
+        #boton:hover {
+            transform: translate(5px, 5px);
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #contenedor {
+            border: 10px dashed red;
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        #contenedor button {
+            padding: 1rem;
+            border: 3px solid #000;
+            background: #00ffdd;
+            font-family: 'Bungee Spice', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #contenedor button:hover {
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        h1:last-of-type {
+            font-size: 4rem;
+            text-align: center;
+            width: 100%;
+            animation: fadeIn 2s;
+            background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 255, 76));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</body>
+
+</html>
